@@ -1,0 +1,62 @@
+<br>
+  <h3 align="center"> Calendar for your planning </h3>
+<br>
+
+<div class="row">
+
+  <div class="small-5 small-centered columns">
+    <fieldset >
+     <legend>Choose Paramers for calendar</legend>
+        <%= link_to "My events", calendar_path(name: "my") %>
+        <%= link_to "All events", calendar_path %>
+    </fieldset>
+  </div>
+
+  <div class="small-13 small-centred columns  ">
+
+   <%= month_calendar events: @meetings do |date, meetings| %>
+   <p valign="top" align="center">
+     <%= link_to date.strftime("%d"), new_my_meeting_path %>
+    </p>
+   <% meetings.each do |meeting| %>
+    <div>
+      <ul>
+      <li><%= link_to truncate( meeting.name ), meeting %>
+      </li>
+    </div>
+  <% end %>
+<% end %>
+<%= link_to 'New Meeting', new_meeting_path, class: "button expand secondary radius" %></a>
+</div>
+
+
+
+
+
+    <div>
+          <div class="row">
+
+            <div class="small-13 small-centred columns  ">
+
+             <%= month_calendar events: @meetings do |date, meetings| %>
+             <p valign="top" align="center">
+             <% count = 0 %>
+               <%= link_to date.strftime("%d"), new_meeting_path %>
+              </p>
+
+             <% meetings.each do |meeting| %>
+              <div>
+              <% if count < 3 %>
+                <ul>
+                <li><%= link_to truncate( meeting.name ), meeting %></li>
+                <% count = count + 1 %>
+              <% else %>
+                 <% count = count + 1 %>
+              <% end %>
+              </div>
+            <% end %>
+            <% if count > 3 %>
+                <li>and <%= count - 3 %> events..</li>
+              <% end %>
+          <% end %>
+</div>

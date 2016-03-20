@@ -1,0 +1,170 @@
+<head>
+
+
+</head>
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class=" small-centred columns ">
+   <br>
+   <h2 align="center"> Your events </h2><br>
+
+   <h4 align="center">On this page you can see your events. Choose form :)</h4>
+   <p align = "center"><%= link_to 'Calendar', my_meetings_path("calendar"), class: "button small secondary radius"%> Or
+   <%= link_to 'list', my_meetings_path("list"), class: "button small secondary radius" %>
+   </p>
+   <% if @type == "list" || @type.nil? %>
+   <h2 align="center">Today</h2>
+    <% count =0 %>
+     <% @meetings.each do |meeting| %>
+      <% if meeting.today? %>
+        <% count = count + 1 %>
+           <div class="small-2 large-4 columns end">
+             <div class="callout-card secondary">
+                <div class="card-label">
+                  <div class="label-text">
+                        Now
+                   </div>
+                 </div>
+
+                <article class="event">
+                  <div class="event-date" >
+                    <p class="event-month" ><%= meeting.start_time.strftime("%b")%></p>
+                    <p class="event-day"><%= meeting.start_time.strftime("%d")%></p>
+                  </div>
+                </article>
+
+
+               <div class="callout-card-content">
+                 <h3 class="lead" align="center"><%= truncate (meeting.name )%></h3>
+                  <p align="center"><%= link_to 'Show', meeting %>
+                 <br>
+                  <%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }%>
+                  </p>
+               </div>
+             </div>
+           </div>
+
+       <% end %>
+    <% end %>
+    <div class=" small-centred columns ">
+      <% if count < 1 %>
+           <p align="center"><%= link_to "You haven't got events ", new_meeting_path %> </p>
+        <% else %>
+          <p align="center">Total: <%=  count %></p>
+      <% end %>
+    </div>
+   </div>
+
+    <div class=" small-centred columns ">
+     <br>
+     <br>
+      <h2 align="center">Actual events</h2>
+     <br>
+     <br>
+     <% count = 0 %>
+      <% @meetings.each do |meeting| %>
+       <% if meeting.actual? %>
+        <% count = count + 1 %>
+           <div class="small-2 large-4 columns end">
+             <div class="callout-card primary">
+               <div class="card-label">
+                 <div class="label-text">
+                    New
+                 </div>
+               </div>
+
+              <article class="event">
+                <div class="event-date" >
+                  <p class="event-month" ><%= meeting.start_time.strftime("%b")%></p>
+                  <p class="event-day"><%= meeting.start_time.strftime("%d")%></p>
+                </div>
+             </article>
+
+            <div class="callout-card-content">
+              <h3 class="lead" align="center"><%= truncate (meeting.name) %></h3>
+              <p align="center"><%= link_to 'Show', meeting %>
+                  <br>
+           <%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }%>
+
+               </p>
+            </div>
+           </div>
+          </div>
+
+        <% end %>
+      <% end %>
+          <div class=" small-centred columns ">
+    <% if count < 1 %>
+        <p align="center"><%= link_to "You haven't got events ", new_meeting_path %> </p>
+     <% else %>
+       <p align="center">Total: <%=  count %></p>
+    <% end %>
+    </div>
+    </div>
+
+   <div class=" small-centred columns ">
+      <% count =0 %>
+      <h2 align="center">History</h2>
+      <br>
+      <br>
+      <% @meetings.each do |meeting| %>
+        <% if meeting.in_past? %>
+         <% count = count + 1 %>
+           <div class="small-2 large-4 columns end">
+              <div class="callout-card alert">
+                <div class="card-label">
+                  <div class="label-text">
+                    Old
+                  </div>
+                </div>
+
+              <article class="event">
+                <div class="event-date" >
+                  <p class="event-month" ><%= meeting.start_time.strftime("%b")%></p>
+                  <p class="event-day"><%= meeting.start_time.strftime("%d")%></p>
+                 </div>
+             </article>
+
+            <div class="callout-card-content">
+              <h3 class="lead" align="center"><%= truncate (meeting.name) %></h3>
+              <p align="center"><%= link_to 'Show', meeting %>
+                <br>
+              <%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }%>
+
+               </p>
+           </div>
+         </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class=" small-centred columns ">
+    <% if count < 1 %>
+         <p align="center"><%= link_to "You haven't got events ", new_meeting_path %> </p>
+       <% else %>
+         <p align="center">Total: <%=  count %></p>
+    <% end %>
+    </div>
+ </div>
+</div>
+<% else %>
+  <div class="small-13 small-centred columns  ">
+ <h2 align="center">Calendar</h2>
+
+   <%= month_calendar events: @meetings do |date, meetings| %>
+   <p valign="top" align="center">
+     <%= link_to date.strftime("%d"), new_meeting_path %>
+    </p>
+   <% meetings.each do |meeting| %>
+    <div>
+      <ul>
+      <li><%= link_to truncate( meeting.name ), meeting %>
+      </li>
+    </div>
+  <% end %>
+<% end %>
+<p align = "center"><%= link_to 'New Meeting', new_meeting_path, class: "button small secondary radius" %></p></a>
+</div>
+
+<% end %>
+<p align="center"><a href="https://github.com/AlinaMoskieva">Moskieva Alina</a></p>
+
