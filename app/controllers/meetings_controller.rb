@@ -15,43 +15,38 @@ class MeetingsController < ApplicationController
 
   def create
    @meeting = current_user.meetings.new(meeting_params)
-
-    respond_to do |format|
-      if @meeting.save
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
-      else
-        format.html { render :new }
-      end
-    end
+     respond_to do |format|
+       if @meeting.save
+         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
+       else
+         format.html { render :new }
+       end
+     end
  end
 
-
-  def update
-    respond_to do |format|
-      if @meeting.update(meeting_params)
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+def update
+  respond_to do |format|
+    if @meeting.update(meeting_params)
+      format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
+    else
+      format.html { render :edit }
     end
   end
+end
 
-  def destroy
-    @meeting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to meetings_url, notice: 'Meeting was successfully destroyed.' }
-    end
+def destroy
+  @meeting.destroy
+  respond_to do |format|
+    format.html { redirect_to meetings_url, notice: 'Meeting was successfully destroyed.' }
   end
+end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def meeting_params
-      params.require(:meeting).permit(:name, :user_id, :start_time, :details, :note, :place)
-    end
+  def meeting_params
+    params.require(:meeting).permit(:name, :user_id, :start_time, :details, :note, :place, :priority)
+  end
 end

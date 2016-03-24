@@ -19,9 +19,15 @@ class Meeting < ActiveRecord::Base
        details.blank? ? "#{option} is not indicated" : details
      elsif option == 'place'
        place.blank? ? "#{option} is not indicated" : place
-     else option == 'note'
+     elsif option == 'note'
        note.blank? ? "#{option} is not indicated" : note
+     else
+      priority.blank? ? "#{option} is not indicated" : priority
      end
+   end
+
+   def isPriority?
+    priority.nil? ? false : priority > 0
    end
 end
 

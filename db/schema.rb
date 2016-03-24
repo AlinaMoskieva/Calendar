@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318200919) do
+ActiveRecord::Schema.define(version: 20160322091436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,22 +32,10 @@ ActiveRecord::Schema.define(version: 20160318200919) do
     t.string   "place"
     t.string   "note"
     t.integer  "user_id"
+    t.integer  "priority"
   end
 
   add_index "meetings", ["user_id"], name: "index_meetings_on_user_id", using: :btree
-
-  create_table "my_meetings", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "start_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "details"
-    t.string   "place"
-    t.string   "note"
-    t.integer  "user_id"
-  end
-
-  add_index "my_meetings", ["user_id"], name: "index_my_meetings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -63,11 +51,11 @@ ActiveRecord::Schema.define(version: 20160318200919) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.integer  "status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "meetings", "users"
-  add_foreign_key "my_meetings", "users"
 end

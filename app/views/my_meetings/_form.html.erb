@@ -31,7 +31,12 @@
     <div class="field">
       <%= f.label :note %> <br>
       <%= f.text_field :note %>
-</div>
+    </div>
+    <div class="field">
+      <%= f.label :priority %>
+      <%= f.text_field :priority %>
+    </div>
+
 </div>
 <div class="small-6 columns ">
   <div class="field">
@@ -40,8 +45,10 @@
       <br><br><br>
   </div>
   </div>
-  <br><br><br>
+  <br><br><br><br><br><br><br><br><br>
 
+
+<div class="small-12 columns">
 
    <div class="actions" align="center">
 
@@ -49,6 +56,7 @@
     <%= f.submit "CREATE MEETING", class: "small secondary button"  %>
     <%= link_to 'return', my_meetings_path, class: " small secondary button" %>
 
+   </div>
    </div>
     <% end %>
 </div>
