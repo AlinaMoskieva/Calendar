@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'quiet_assets'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'
@@ -20,7 +21,6 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem 'devise'
   gem 'foundation-rails'
   gem "simple_calendar", "~> 2.0"
 
