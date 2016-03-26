@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'quiet_assets'
 gem 'devise'
+gem "simple_calendar", "~> 2.0"
 
 group :development, :test do
   gem 'byebug'
@@ -22,7 +23,6 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'foundation-rails'
-  gem "simple_calendar", "~> 2.0"
 
 end
 group :production do
