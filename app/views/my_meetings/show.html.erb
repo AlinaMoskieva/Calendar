@@ -39,7 +39,7 @@
     <br>
     <p>
       <strong>Priority</strong>
-      <p align="right"> <%= @meeting.priority %><br></p>
+      <p align="right"> <%= @meeting.indicated("priority") %><br></p>
     </p>
      <p align="center">
     <% if @meeting.user_id == current_user.id %>
