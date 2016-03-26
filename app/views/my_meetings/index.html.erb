@@ -45,7 +45,7 @@
     <% end %>
     <div class=" small-centred columns ">
       <% if count < 1 %>
-           <p align="center"><%= link_to "You haven't got events ", new_meeting_path %> </p>
+           <p align="center"><%= link_to "You haven't got events ", new_my_meeting_path %> </p>
       <% else %>
           <p align="center">Total: <%=  count %></p>
       <% end %>
@@ -92,7 +92,7 @@
   <div class=" small-centred columns ">
     <% if count < 1 %>
         <p align="center">
-          <%= link_to "You haven't got events ", new_meeting_path %>
+          <%= link_to "You haven't got events ", new_my_meeting_path %>
         </p>
     <% else %>
        <p align="center">Total: <%=  count %></p>
@@ -138,7 +138,7 @@
     <div class=" small-centred columns ">
     <% if count < 1 %>
       <p align="center">
-        <%= link_to "You haven't got events ", new_meeting_path %>
+        <%= link_to "You haven't got events ", new_my_meeting_path %>
       </p>
     <% else %>
       <p align="center">Total: <%=  count %></p>
@@ -152,7 +152,7 @@
 
    <%= month_calendar events: @meetings do |date, meetings| %>
       <p valign="top" align="center">
-        <%= link_to date.strftime("%d"), new_meeting_path %>
+        <%= link_to date.strftime("%d"), new_my_meeting_path %>
       </p>
       <% meetings.each do |meeting| %>
        <div>
@@ -199,7 +199,7 @@
     <% if count < 1 %>
       <br>
       <br>
-      <p align="center"><%= link_to "You haven't got events ", new_meeting_path %> </p>
+      <p align="center"><%= link_to "You haven't got events ", new_my_meeting_path %> </p>
     <% else %>
          <p align="center">Total: <%=  count %></p>
     <% end %>

@@ -41,8 +41,8 @@
       <strong>Priority</strong>
       <p align="right"> <%= @meeting.priority %><br></p>
     </p>
-    <% if @meeting.user_id == current_user.id %>
      <p align="center">
+    <% if @meeting.user_id == current_user.id %>
        <%= link_to 'Edit', edit_meeting_path(@meeting), class: "small secondary button radius" %>
     <% end%>
     <%= link_to 'Back', meetings_path, class: "small secondary button radius" %><%= render "social_sharing" %></p>

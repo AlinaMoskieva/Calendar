@@ -15,7 +15,7 @@
       <%= month_calendar events: @meetings do |date, meetings| %>
         <p valign="top" align="center">
           <% count = 0 %>
-          <%= link_to date.strftime("%d"), new_meeting_path %>
+          <%= link_to date.strftime("%d"), new_my_meeting_path %>
         </p>
 
         <% meetings.each do |meeting| %>
