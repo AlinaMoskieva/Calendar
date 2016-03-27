@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<br>
+<br>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <h3 align="center"> Details of meeting </h3><br><br>
+    <div class="field">
+       <strong>Name:</strong><br>
+       <p align="right"><%= @meeting.name %></p>
+    </div>
+    <p>
+      <strong>Start time:</strong><br>
+      <p align="right"> <%= @meeting.start_time.strftime("%H:%M %F") %>
+    </p><br>
+    <p>
+      <strong>Details:</strong><br>
+      <p align="right">
+        <%=  @meeting.indicated("details") %>
+      </p>
+    <br>
+    <p>
+     <strong>Place:</strong><br>
+      <p align="right">
+        <%=  @meeting.indicated("place") %>
+      </p>
+    </p>
+    <br>
+    <p>
+      <strong>Note:</strong><br>
+      <p align="right">
+        <%= @meeting.indicated("note") %>
+      </p>
+    </p>
+    <br>
+    <p>
+      <strong>Created at:</strong>
+      <p align="right">  <%= @meeting.created_at.strftime("%H:%M %F") %><br>
+    </p>
+    <br>
+    <p>
+      <strong>Priority</strong>
+      <p align="right"> <%= @meeting.indicated("priority") %><br></p>
+    </p>
+     <p align="center">
+    <% if @meeting.user_id == current_user.id %>
+       <%= link_to 'Edit', edit_meeting_path(@meeting), class: "small secondary button radius" %>
+    <% end%>
+    <%= link_to 'Back', meetings_path, class: "small secondary button radius" %><%= render "social_sharing" %></p>
+  </div>
+</div>
+<p align="center"><a href="https://github.com/AlinaMoskieva">Moskieva Alina</a></p>

@@ -1,0 +1,74 @@
+<br>
+<br>
+<h1 align="center"> All events</h1>
+<br>
+<h3 align="center">On this page you can see all evens of all users of the site. Enjoy it :) </h3>
+<br>
+<h4 align="center"> Choose form :)</h4>
+<p align = "center"><%= link_to 'Calendar', meetings_path("calendar"), class: "button small secondary radius"%> Or
+<%= link_to 'list', meetings_path("list"), class: "button small secondary radius" %>
+</p>
+<br>
+<div class="row">
+  <div class="small-13 small-centred columns  ">
+    <% if @type == "calendar" || @type.nil? %>
+      <%= month_calendar events: @meetings do |date, meetings| %>
+        <p valign="top" align="center">
+          <% count = 0 %>
+          <%= link_to date.strftime("%d"), new_my_meeting_path %>
+        </p>
+
+        <% meetings.each do |meeting| %>
+          <div>
+            <% if count < 3 %>
+              <ul>
+              <li><%= link_to truncate( meeting.name ), meeting %></li>
+              <% count = count + 1 %>
+            <% else %>
+              <% count = count + 1 %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if count > 3 %>
+          <li>and <%= count - 3 %> events..</li>
+        <% end %>
+     <% end %>
+    </div>
+  </div>
+  <% else %>
+    <div class="row">
+      <div class=" small-centred columns ">
+        <% @meetings.each do |meeting| %>
+          <div class="small-2 large-4 columns end">
+            <div class="callout-card primary">
+              <div class="card-label">
+                <div class="label-text">
+                 All
+                </div>
+              </div>
+            <article class="event">
+              <div class="event-date" >
+                <p class="event-month" ><%= meeting.start_time.strftime("%b")%></p>
+                <p class="event-day"><%= meeting.start_time.strftime("%d")%></p>
+              </div>
+            </article>
+            <div class="callout-card-content">
+              <h3 class="lead" align="center"><%= truncate (meeting.name) %></h3>
+              <h6 class="lead" align="center">By <%= truncate ( meeting.user.email) %></h3>
+              <p align="center"><%= link_to 'Show', meeting %>
+                <br>
+                <% if meeting.user_id == current_user.id %>
+                  <%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }%>
+                <% else %>
+                  <br>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+ <br>
+<p align="center"><a href="https://github.com/AlinaMoskieva">Moskieva Alina</a></p>
