@@ -12,12 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ //= require foundation_and_overrides
+
  *= require foundation_and_overrides
  *= reqoire simple_calendar
  *= require simple_calendar
 
  @import "month_calendar"
-
+ @import "foundation_and_overrides";
  */
 
 

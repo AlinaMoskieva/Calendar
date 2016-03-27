@@ -19,4 +19,6 @@
 //= require jquery_ujs
 
 $(function(){ $(document).foundation(); });
+//= require foundation
+$(document).foundation();
 
