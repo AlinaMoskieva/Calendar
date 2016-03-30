@@ -20,18 +20,14 @@
 
         <% meetings.each do |meeting| %>
           <div>
-            <% if count < 3 %>
-              <ul>
-              <li><%= link_to truncate( meeting.name ), meeting %></li>
-              <% count = count + 1 %>
-            <% else %>
-              <% count = count + 1 %>
-            <% end %>
+             <% count += 1 %>
+             <% next unless count > 3%>
+               <ul>
+               <li><%= link_to truncate( meeting.name ), meeting %></li>
           </div>
         <% end %>
-        <% if count > 3 %>
+        <% next unless count > 3 %>
           <li>and <%= count - 3 %> events..</li>
-        <% end %>
      <% end %>
     </div>
   </div>

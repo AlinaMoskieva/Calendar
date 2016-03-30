@@ -1,6 +1,7 @@
 class MyMeetingsController < ApplicationController
-    before_action :authenticate_user!
-      before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+
   def index
     @meetings = current_user.meetings.order(start_time: :desc)
     @type = request.params[:format]
@@ -46,11 +47,11 @@ class MyMeetingsController < ApplicationController
   end
 
   private
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
 
-    def meeting_params
-      params.require(:meeting).permit(:name, :user_id, :start_time, :details, :note, :place, :priority)
-    end
+  def meeting_params
+    params.require(:meeting).permit(:name, :user_id, :start_time, :details, :note, :place, :priority)
+  end
 end

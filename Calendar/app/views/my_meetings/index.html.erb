@@ -15,7 +15,7 @@
     <% count =0 %>
      <% @meetings.each do |meeting| %>
       <% if meeting.today? %>
-        <% count = count + 1 %>
+        <% count += 1 %>
            <div class="small-2 large-4 columns end">
              <div class="callout-card secondary">
                 <div class="card-label">
@@ -44,7 +44,7 @@
        <% end %>
     <% end %>
     <div class=" small-centred columns ">
-      <% if count < 1 %>
+      <% if count.zero? %>
            <p align="center"><%= link_to "You haven't got events ", new_my_meeting_path %> </p>
       <% else %>
           <p align="center">Total: <%=  count %></p>
@@ -60,7 +60,7 @@
      <% count = 0 %>
       <% @meetings.each do |meeting| %>
        <% if meeting.actual? %>
-        <% count = count + 1 %>
+        <% count += 1 %>
            <div class="small-2 large-4 columns end">
              <div class="callout-card primary">
                <div class="card-label">
@@ -90,7 +90,7 @@
        <% end %>
       <% end %>
   <div class=" small-centred columns ">
-    <% if count < 1 %>
+    <% if count.zero? %>
         <p align="center">
           <%= link_to "You haven't got events ", new_my_meeting_path %>
         </p>
@@ -107,7 +107,7 @@
       <br>
       <% @meetings.each do |meeting| %>
         <% if meeting.in_past? %>
-         <% count = count + 1 %>
+         <% count += 1 %>
            <div class="small-2 large-4 columns end">
               <div class="callout-card alert">
                 <div class="card-label">
@@ -136,7 +136,7 @@
        <% end %>
      <% end %>
     <div class=" small-centred columns ">
-    <% if count < 1 %>
+    <% if count.zero? %>
       <p align="center">
         <%= link_to "You haven't got events ", new_my_meeting_path %>
       </p>
@@ -168,7 +168,7 @@
     <% count = 0 %>
        <% @meetings.each do |meeting| %>
          <% if meeting.isPriority? %>
-           <% count = count + 1 %>
+           <% count += 1 %>
                <div class="small-2 large-4 columns end">
                   <div class="callout-card alert">
                     <div class="card-label">
@@ -196,7 +196,7 @@
        <% end %>
      <% end %>
    <div class=" small-centred columns ">
-    <% if count < 1 %>
+    <% if count.zero? %>
       <br>
       <br>
       <p align="center"><%= link_to "You haven't got events ", new_my_meeting_path %> </p>
